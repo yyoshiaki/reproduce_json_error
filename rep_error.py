@@ -1,11 +1,10 @@
-import pickle
-
+from sklearn.datasets import load_iris
 from sklearn.model_selection import StratifiedKFold
 import optuna.integration.lightgbm as lgb
 
-with open('data.pickle', 'rb') as f:
-    X_train, y_train = pickle.load(f)
-
+iris = load_iris()
+X_train = iris.data
+y_train = iris.target
 lgb_train = lgb.Dataset(X_train, y_train)
 
 FOLD = 5
